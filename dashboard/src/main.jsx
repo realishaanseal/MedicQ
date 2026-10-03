@@ -21,7 +21,7 @@ function useRoute() {
 
 function App() {
   const [page, id] = useRoute();
-  const { connected, alerts } = useLive();
+  const { connected, mode, alerts } = useLive();
   const crit = Object.values(alerts).filter((a) => a.severity === 'crit' && !a.acked_at).length;
 
   // Bedside monitor is full-screen with no nav.
@@ -30,11 +30,13 @@ function App() {
   return (
     <>
       <nav>
-        <strong>Smart Bed · Ward A</strong>
+        <strong>MedicQ · Ward A</strong>
         <a href="#/">Station</a>
         <a href="#/alerts">Alerts {crit > 0 && <span className="badge">{crit}</span>}</a>
         <a href="#/devices">Devices</a>
-        <span className={`conn ${connected ? 'ok' : 'down'}`}>{connected ? 'live' : 'disconnected'}</span>
+        {mode === 'demo'
+          ? <span className="conn demo" title="Simulated beds and the real rules engine running in your browser. Add ?server=https://your-server to connect to real devices.">demo · simulated data</span>
+          : <span className={`conn ${connected ? 'ok' : 'down'}`}>{connected ? 'live' : 'disconnected'}</span>}
       </nav>
       <main>
         {page === 'bed' && id ? <BedDetail bedId={id} />

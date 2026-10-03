@@ -1,5 +1,7 @@
 // Central configuration. Override any value with environment variables.
-const env = (k, d) => (process.env[k] !== undefined ? Number(process.env[k]) || process.env[k] : d);
+// Also imported by the dashboard's in-browser demo mode, where there is no process.env.
+const ENV = globalThis.process?.env ?? {};
+const env = (k, d) => (ENV[k] !== undefined ? Number(ENV[k]) || ENV[k] : d);
 
 export const config = {
   httpPort: env('HTTP_PORT', 4000),

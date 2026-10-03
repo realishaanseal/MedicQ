@@ -43,6 +43,24 @@ serves the UI at `http://<laptop-ip>:4000`. Bedside monitor URL: `#/monitor/B01`
 Simulator scenarios: `normal desat fever tachy hypotension exit fall badsignal still call offline`.
 `TIME_SCALE=60` makes one real minute count as one hour, so the 2-hour pressure-injury rule fires in about 2 minutes.
 
+## Hosting the dashboard on Vercel
+
+Import this repo in Vercel and keep the defaults. The root `vercel.json` builds
+`dashboard/` and publishes `dashboard/dist`. The hosted page runs in **demo mode**.
+Eight simulated beds and the real rules engine (imported from `server/src`) run in
+the visitor's browser, so it works with no server at all.
+
+Vercel can't host the MQTT broker or the live Socket.IO server. Run `server/` on a
+laptop or a host that keeps processes running (Railway, Render, Fly.io, a Raspberry
+Pi), then point the dashboard at it:
+
+- per visit: `https://<your-app>.vercel.app/?server=https://your-server`
+- permanently: set `VITE_SERVER_URL=https://your-server` in Vercel's environment variables and redeploy
+
+The server must be reachable over **HTTPS**. Browsers block an `https://` page from
+talking to an `http://` server. For a laptop server, a tunnel works:
+`cloudflared tunnel --url http://localhost:4000`. Add `?demo=1` to any URL to force demo mode.
+
 ## Hardware
 
 1. Copy `firmware/<node>/src/config.example.h` to `config.h`. Set Wi-Fi, the server IP and `BED_ID`.
