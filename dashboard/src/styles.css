@@ -14,7 +14,7 @@ button:hover { background: #26303b; }
 .empty { padding: 40px; color: var(--muted); text-align: center; }
 nav { display: flex; gap: 18px; align-items: center; padding: 10px 16px; border-bottom: 1px solid var(--line); background: var(--panel); flex-wrap: wrap; }
 nav a { text-decoration: none; color: var(--muted); } nav a:hover { color: var(--text); }
-.conn { margin-left: auto; font-size: 12px; } .conn.ok { color: var(--hr); } .conn.down { color: var(--crit); }
+.conn { margin-left: auto; font-size: 12px; } .conn.ok { color: var(--hr); } .conn.demo { color: var(--info); border: 1px solid var(--info); border-radius: 4px; padding: 1px 8px; cursor: help; } .conn.down { color: var(--crit); }
 .badge { background: var(--crit); color: #fff; border-radius: 9px; padding: 0 6px; font-size: 12px; }
 main { padding: 16px; }
 footer { padding: 8px 16px; color: var(--muted); font-size: 12px; }
@@ -31,7 +31,8 @@ footer { padding: 8px 16px; color: var(--muted); font-size: 12px; }
 @keyframes flash { 50% { box-shadow: 0 0 0 3px #ff3b3b55 inset; } }
 .tile-head { display: flex; gap: 10px; align-items: baseline; }
 .occ { margin-left: auto; font-size: 12px; } .occ.in { color: var(--hr); } .occ.out { color: var(--warn); }
-.tile-vitals { display: grid; grid-template-columns: repeat(3, auto) 1fr auto; gap: 10px; margin: 8px 0 4px; }
+.tile-vitals { display: grid; grid-template-columns: repeat(5, auto); justify-content: space-between; gap: 4px 8px; margin: 8px 0 4px; }
+.tile .vital-value { font-size: 21px; }
 .tile-alert { min-height: 18px; font-size: 12px; color: var(--warn); }
 .tile.sev-crit .tile-alert { color: var(--crit); }
 
