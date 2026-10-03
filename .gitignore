@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.db
+*.db-*
+.pio/
+firmware/*/src/config.h
+.DS_Store
